@@ -1,0 +1,61 @@
+71、简述synchronized和java.util.concurrent.locks.Lock的异同？
+	主要相同点：Lock能完成synchronized所实现的所有功能
+	主要不同点：Lock有比synchronized更精确的线程语义和更好的性能.synchronized会自动释放锁
+	,而Lock一定要求程序员手工释放,并且必须在finally从句中释放.
+	
+	
+72、EJB的角色和三个对象
+　一个完整的基于EJB的分布式计算结构由六个角色组成,这六个角色可以由不同的开发商提供,每个角色所作的工作必须
+遵循Sun公司提供的EJB规范,以保证彼此之间的兼容性.这六个角色分别是EJB组件开发者（Enterprise Bean Provider）
+、应用组合者（Application Assembler）、部署者（Deployer）、EJB 服务器提供者（EJB ServerProvider）、EJB 容器
+提供者（EJB Container Provider）、系统管理员（System Administrator）
+
+三个对象是Remote（Local）接口、Home（LocalHome）接口,Bean类
+
+
+73、EJB容器提供的服务
+    主要提供声明周期管理、代码产生、持续性管理、安全、事务管理、锁和并发行管理等服务.
+	
+
+74、EJB规范规定EJB中禁止的操作有哪些？
+	1.不能操作线程和线程API(线程API指非线程对象的方法如notify,wait等),
+	2.不能操作awt,
+	3.不能实现服务器功能,
+	4.不能对静态属性存取,
+	5.不能使用IO操作直接存取文件系统,
+	6.不能加载本地库.,
+	7.不能将this作为变量和返回,
+	8.不能循环调用.
+	
+75、remote接口和home接口主要作用
+	remote接口定义了业务方法,用于EJB客户端调用业务方法.
+	home接口是EJB工厂用于创建和移除查找EJB实例
+
+
+76、bean 实例的生命周期
+　　对于Stateless Session Bean、Entity Bean、Message DrivenBean一般存在缓冲池管理,而对于Entity Bean和
+Statefull SessionBean存在Cache管理,通常包含创建实例,设置上下文、创建EJBObject（create）、业务方法调用、
+remove等过程,对于存在缓冲池管理的Bean,在create之后实例并不从内存清除,而是采用缓冲池调度机制不断重用实例,
+而对于存在Cache管理的Bean则通过激活和去激活机制保持Bean的状态并限制内存中实例数量.
+
+
+77、EJB的激活机制
+　　 以Stateful Session Bean为例：其Cache大小决定了内存中可以同时存在的Bean实例的数量,根据MRU或NRU算法,实例
+	在激活和去激活状态之间迁移,激活机制是当客户端调用某个EJB实例业务方法时,如果对应EJBObject发现自己没有绑定对应的
+    Bean实例则从其去激活Bean存储中（通过序列化机制存储实例）回复（激活）此实例.状态变迁前会调用对应的ejbActive和ejbPassivate方法.
+
+
+78、EJB的几种类型
+	会话（Session）Bean ,实体（Entity）Bean 消息驱动的（Message Driven）Bean
+	会话Bean又可分为有状态（Stateful）和无状态（Stateless）两种
+	实体Bean可分为Bean管理的持续性（BMP）和容器管理的持续性（CMP）两种
+
+79、客服端调用EJB对象的几个基本步骤
+
+设置JNDI服务工厂以及JNDI服务地址系统属性,查找Home接口,从Home接口调用Create方法创建Remote接口,通过Remote接口调用其业务方法.
+
+80、如何给weblogic指定大小的内存?
+　　在启动Weblogic的脚本中（位于所在Domian对应服务器目录下的
+	startServerName）,增加set MEM_ARGS=-Xms32m -Xmx200m,可以调整最小内存为
+
+

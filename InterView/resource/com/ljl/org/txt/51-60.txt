@@ -1,0 +1,79 @@
+51、垃圾回收的优点和原理.并考虑2种回收机制.
+
+　　Java语言中一个显著的特点就是引入了垃圾回收机制,使c++程序员最头疼的内存管理的问题迎刃而解
+,它使得Java程序员在编写程序的时候不再需要考虑内存管理.由于有个垃圾回收机制,Java中的对象不再
+有"作用域"的概念,只有对象的引用才有"作用域".垃圾回收可以有效的防止内存泄露,有效的使用可以使
+用的内存.垃圾回收器通常是作为一个单独的低级别的线程运行,不可预知的情况下对内存堆中已经死亡的
+或者长时间没有使用的对象进行清楚和回收,程序员不能实时的调用垃圾回收器对某个对象或所有对象进行
+垃圾回收.回收机制有分代复制垃圾回收和标记垃圾回收,增量垃圾回收.
+
+
+
+52、请说出你所知道的线程同步的方法.
+	wait():使一个线程处于等待状态,并且释放所持有的对象的lock.
+	
+	sleep():使一个正在运行的线程处于睡眠状态,是一个静态方法,调用此方法要捕捉InterruptedException异常.
+	
+	notify():唤醒一个处于等待状态的线程,注意的是在调用此方法的时候,并不能确切的唤醒某一个等待状态的线程,而是由JVM确定唤醒哪个线程,而且不是按优先级.
+	
+	notityAll():唤醒所有处入等待状态的线程,注意并不是给所有唤醒线程一个对象的锁,而是让它们竞争.
+
+
+53、你所知道的集合类都有哪些？主要方法？
+　　最常用的集合类是 List 和 Map. List 的具体实现包括 ArrayList 和 Vector,它们是可变大小的列表,比较适合构建
+、存储和操作任何类型对象的元素列表. List 适用于按数值索引访问元素的情形.
+Map 提供了一个更通用的元素存储方法. Map 集合类用于存储元素对（称作"键"和"值"）,其中每个键映射到一个值.
+
+
+54、描述一下JVM加载class文件的原理机制?
+　　JVM中类的装载是由ClassLoader和它的子类来实现的,Java ClassLoader 是一个重要的Java运行时系统组件.它负责
+在运行时查找和装入类文件的类.
+
+
+55、char型变量中能不能存贮一个中文汉字?为什么?
+　　能够定义成为一个中文的,因为java中以unicode编码,一个char占16个字节,所以放一个中文是没问题的
+
+
+
+56、多线程有几种实现方法,都是什么?同步有几种实现方法,都是什么?
+
+多线程有两种实现方法,分别是继承Thread类与实现Runnable接口
+同步的实现方面有两种,分别是synchronized,wait与notify
+
+
+57、JSP的内置对象及方法.
+　　request表示HttpServletRequest对象.它包含了有关浏览器请求的信息,并且提供了几个用于获取cookie,header, 和session数据的有用的方法. 
+	
+	response表示HttpServletResponse对象,并提供了几个用于设置送回浏览器的响应的方法（如cookies,头信息等）
+	
+	out对象是javax.servlet.jsp.JspWriter的一个实例,并提供了几个方法使你能用于向浏览器回送输出结果.
+	
+	pageContext表示一个javax.servlet.jsp.PageContext对象.它是用于方便存取各种范围的名字空间、servlet相关
+	的对象的API,并且包装了通用的servlet相关功能的方法.
+	
+	session表示一个请求的javax.servlet.http.HttpSession对象.Session可以存贮用户的状态信息
+	
+	applicaton 表示一个javax.servle.ServletContext对象.这有助于查找有关servlet引擎和servlet环境的信息
+	
+	config表示一个javax.servlet.ServletConfig对象.该对象用于存取servlet实例的初始化参数.
+	
+	page表示从该页面产生的一个servlet实例
+
+
+58、线程的基本概念、线程的基本状态以及状态之间的关系
+　　线程指在程序执行过程中,能够执行程序代码的一个执行单位,每个程序至少都有一个线程,也就是程序本身.
+Java中的线程有四种状态分别是：运行、就绪、挂起、结束.
+
+
+59、JSP的常用指令
+<%@page language="java" csession="true" buffer="64kb" autoFlush="true" isThreadSafe="true"info="text" 
+errorPage="error.jsp" isErrorPage="true" isELIgnored="true"pageEncoding="gb2312" import="java.sql.*"%>
+isErrorPage(是否能使用Exception对象),isELIgnored(是否忽略表达式)
+<%@include file="filename"%>
+<%@taglib prefix="c"uri="http://......"%>
+
+
+60、什么情况下调用doGet()和doPost()？
+　　Jsp页面中的form标签里的method属性为get时调用doGet(),为post时调用doPost().
+
+

@@ -1,0 +1,55 @@
+21、heap和stack有什么区别.
+　　栈是一种线形集合,其添加和删除元素的操作应在同一段完成.栈按照后进先出的方式进行处理.
+堆是栈的一个组成元素
+
+22、forward 和redirect的区别
+
+　　forward是服务器请求资源,服务器直接访问目标地址的URL,把那个URL的响应内容读取过来,然后把这些内容
+再发给浏览器,浏览器根本不知道服务器发送的内容是从哪儿来的,所以它的地址栏中还是原来的地址.
+redirect就是服务端根据逻辑,发送一个状态码,告诉浏览器重新去请求那个地址,一般
+来说浏览器会用刚才请求的所有参数重新请求,所以session,request参数都可以获取.
+
+23、EJB与JAVA BEAN的区别？
+
+　　Java Bean 是可复用的组件,对Java Bean并没有严格的规范,理论上讲,任何一个Java类都可以是一个Bean.但
+通常情况下,由于Java Bean是被容器所创建（如Tomcat）的,所以Java Bean应具有一个无参的构造器,另外,通常
+Java Bean还要实现Serializable接口用于实现Bean的持久性.Java Bean实际上相当于微软COM模型中的本地进程内COM组件
+,它是不能被跨进程访问的.Enterprise Java Bean 相当于DCOM,即分布式组件.它是基于Java的远程方法调用（RMI）技术的
+,所以EJB可以被远程访问（跨进程、跨计算机）.但EJB必须被布署在诸如Webspere、WebLogic这样的容器中,EJB客户从不直接
+访问真正的EJB组件,而是通过其容器访问.EJB容器是EJB组件的代理, EJB组件由容器所创建和管理.客户通过容器来访问真正的EJB组件.
+
+24、Static Nested Class 和 Inner Class的不同.
+Static Nested Class是被声明为静态（static）的内部类,它可以不依赖于外部类实例被实例化.而通常的内部类需要在外部类实例化后才能实例化.
+
+
+25、JSP中动态INCLUDE与静态INCLUDE的区别？
+　　动态INCLUDE用jsp:include动作实现 <jsp:include page="included.jsp" flush="true" />它总是会检查所含文件中的变化
+,适合用于包含动态页面,并且可以带参数.
+静态INCLUDE用include伪码实现,定不会检查所含文件的变化,适用于包含静态页面<%@ include file="included.htm" %>
+
+
+26、什么时候用assert.
+
+assertion(断言)在软件开发中是一种常用的调试方式,很多开发语言中都支持这种机制.在实现中,assertion就是在程序中的一条语句
+,它对一个boolean表达式进行检查,一个正确程序必须保证这个boolean表达式的值为true；如果该值为false,说明程序已经处于不正确
+的状态下,系统将给出警告或退出.一般来说,assertion用于保证程序最基本、关键的正确性.assertion检查通常在开发和测试时开启.
+为了提高性能,在软件发布后,assertion检查通常是关闭的.
+
+27、GC是什么? 为什么要有GC?
+　　GC是垃圾收集的意思（Gabage Collection）,内存处理是编程人员容易出现问题的地方,忘记或者错误的内存回收会导致程序或系统的
+不稳定甚至崩溃,Java提供的GC功能可以自动监测对象是否超过作用域从而达到自动回收内存的目的,Java语言没有提供释放已分配内存的显示操作方法.
+
+
+28、short s1 = 1; s1 = s1 + 1;有什么错? short s1 = 1; s1 += 1;有什么错?
+short s1 = 1; s1 = s1 + 1; （s1+1运算结果是int型,需要强制转换类型）
+short s1 = 1; s1 += 1;（可以正确编译）
+
+
+29、Math.round(11.5)等於多少? Math.round(-11.5)等於多少?
+Math.round(11.5)==12
+Math.round(-11.5)==-11
+round方法返回与参数最接近的长整数,参数加1/2后求其floor.
+
+
+30、String s = new String("xyz");创建了几个String Object?
+两个

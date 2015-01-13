@@ -1,0 +1,57 @@
+81、如何设定的weblogic的热启动模式(开发模式)与产品发布模式?
+
+	可以在管理控制台中修改对应服务器的启动模式为开发或产品模式之一.或者修改服务的启动文件或者commenv文件,增加set PRODUCTION_MODE=true
+
+
+82、如何启动时不需输入用户名与密码?Web Login Server (WLS)
+　　修改服务启动文件,增加 WLS_USER和WLS_PW项.也可以在boot.properties文件中增加加密过的用户名和密码.
+
+
+
+83、在weblogic管理制台中对一个应用域(或者说是一个网站,Domain)进行jms及ejb或连接池等相关信息进行配置后,实际保存在什么文件中?
+　　保存在此Domain的config.xml文件中,它是服务器的核心配置文件.
+
+
+84、说说weblogic中一个Domain的缺省目录结构?比如要将一个简单的helloWorld.jsp放入何目录下,然的在浏览器上就可打入 http://主机:
+          端口号//helloword.jsp就可以看到运行结果了?又比如这其中用到了一个自己写的javaBean该如何办?
+    
+	Domain目录服务器目录applications,将应用目录放在此目录下将可以作为应用访问,如果是Web应用,应用目录需要满足Web应用目录要求,
+	jsp文件可以直接放在应用目录中,Javabean需要放在应用目录的WEB-INF目录的classes目录中,设置服务器的缺省应用将可以实现在浏览器上无需输入应用名.
+
+
+
+85、在weblogic中发布ejb需涉及到哪些配置文件
+　　不同类型的EJB涉及的配置文件不同,都涉及到的配置文件包括ejb-jar.xml,weblogic-ejb-jar.xmlCMP实体Bean一般还需要weblogic-cmp-rdbms-jar.xml
+
+
+86、如何在weblogic中进行ssl配置与客户端的认证配置或说说j2ee(标准)进行ssl的配置
+　　缺省安装中使用DemoIdentity.jks和DemoTrust.jks KeyStore实现SSL,需要配置服务器使用EnableSSL,配置其端口,在产品模式下需要从CA获
+         取私有密钥和数字证书,创建identity和trustkeystore,装载获得的密钥和数字证书.可以配置此SSL连接是单向还是双向的.
+
+
+87、如何查看在weblogic中已经发布的EJB?
+	可以使用管理控制台,在它的Deployment中可以查看所有已发布的EJB
+
+
+88、CORBA是什么?用途是什么?
+　　CORBA 标准是公共对象请求代理结构(Common Object Request Broker Architecture),由对象管理组织(Object Management Group,缩写为 OMG)
+	标准化.它的组成是接口定义语言(IDL),语言绑定(binding:也译为联编)和允许应用程序间互操作的协议.其目的为：用不同的程序设计语言书写在不同
+	的进程中运行,为不同的操作系统开发.
+
+
+89、说说你所熟悉或听说过的j2ee中的几种常用模式?及对设计模式的一些看法
+	Session Facade Pattern：使用SessionBean访问EntityBean
+	Message Facade Pattern：实现异步调用
+	EJB Command Pattern：使用Command JavaBeans取代SessionBean,实现轻量级访问
+	Data Transfer Object Factory：通过DTO Factory简化EntityBean数据提供特性
+	Generic Attribute Access：通过AttibuteAccess接口简化EntityBean数据提供特性
+	Business Interface：通过远程（本地）接口和Bean类实现相同接口规范业务逻辑一致性
+	EJB架构的设计好坏将直接影响系统的性能、可扩展性、可维护性、组件可重用性及开发效率.项目越复杂,项目队伍越庞大则越能体现良好设计的重要性.
+
+
+90、说说在weblogic中开发消息Bean时的persistent与non-persisten的差别
+　　persistent方式的MDB可以保证消息传递的可靠性,也就是如果EJB容器出现问题而JMS服务器依然会将消息在此MDB可用的时候发送过来,而non－persistent方式的消息将被丢弃.
+	
+	
+	
+	

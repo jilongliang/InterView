@@ -1,0 +1,74 @@
+31、EJB包括（SessionBean,EntityBean）说出他们的生命周期,及如何管理事务的？
+
+　　SessionBean： Stateless Session Bean 的生命周期是由容器决定的,当客户机发出请求要建立一个Bean的实例时,EJB容器
+不一定要创建一个新的Bean的实例供客户机调用,而是随便找一个现有的实例提供给客户机.当客户机第一次调用一个Stateful 
+Session Bean 时,容器必须立即在服务器中创建一个新的Bean实例,并关联到客户机上,以后此客户机调用Stateful Session Bean 
+的方法时容器会把调用分派到与此客户机相关联的Bean实例.
+EntityBean：Entity Beans能存活相对较长的时间,并且状态是持续的.只要数据库中的数据存在,Entity beans就一直存活.
+而不是按照应用程序或者服务进程来说的.即使
+EJB容器崩溃了,Entity beans也是存活的.Entity Beans生命周期能够被容器或者 Beans自己管理.
+
+　　EJB通过以下技术管理实务：对象管理组织（OMG）的对象实务服务（OTS）,Sun Microsystems的Transaction Service（JTS）、
+    Java Transaction API（JTA）,开发组（X/Open）的XA接口.
+
+32、应用服务器有那些？
+	BEA WebLogic Server,IBM WebSphere Application Server,Oracle9i Application Server,jBoss,Tomcat
+
+33、给我一个你最常见到的runtime exception.
+	 ArithmeticException,
+	 ArrayStoreException, 
+	 BufferOverflowException, 
+	 BufferUnderflowException, 
+	 CannotRedoException
+	 CannotUndoException, 
+	 ClassCastException, 
+	 CMMException,
+	 ConcurrentModificationException, 
+	 DOMException, 
+	 EmptyStackException, 
+	 IllegalArgumentException, 
+	 IllegalMonitorStateException,
+	 IllegalPathStateException,
+	 IllegalStateException, 
+	 ImagingOpException, 
+	 IndexOutOfBoundsException, 
+	 MissingResourceException,
+	 NegativeArraySizeException, 
+	 NoSuchElementException,
+	 NullPointerException,
+	 ProfileDataException, 
+	 ProviderException, 
+	 RasterFormatException, 
+	 SecurityException, 
+	 SystemException,
+	 UndeclaredThrowableException, 
+	 UnmodifiableSetException, 
+	 UnsupportedOperationException
+
+
+34、接口是否可继承接口? 抽象类是否可实现(implements)接口? 抽象类是否可继承实体类(concrete class)?
+
+　　接口可以继承接口.抽象类可以实现(implements)接口,抽象类是否可继承实体类,但前提是实体类必须有明确的构造函数.
+
+35、List, Set, Map是否继承自Collection接口?
+
+List,Set是,Map不是
+
+36、说出数据连接池的工作机制是什么?
+　　J2EE 服务器启动时会建立一定数量的池连接,并一直维持不少于此数目的池连接.客户端程序需要连接时,池驱动程序会返回一个未
+使用的池连接并将其表记为忙.如果当前没有空闲连接,池驱动程序就新建一定数量的连接,新建连接的数量由配置参数决定.当使用的池
+连接调用完成后,池驱动程序将此连接表记为空闲,其他调用就不可以使用这个连接.
+
+37、abstract的method是否可同时是static,是否可同时是native,是否可同时是synchronized?
+都不能
+
+38、数组有没有length()这个方法? String有没有length()这个方法？
+　　数组没有length()这个方法,有length的属性.String有有length()这个方法.
+
+39、Set里的元素是不能重复的,那么用什么方法来区分重复与否呢? 是用==还是equals()? 它们有何区别?
+　　Set里的元素是不能重复的,那么用iterator()方法来区分重复与否.equals()是判读两个Set是否相等.
+	equals()和==方法决定引用值是否指向同一对象equals()在类中被覆盖,为的是当两个分离的对象的内容和类型相配的话,返回真值.
+
+40、构造器Constructor是否可被override?
+　构造器Constructor不能被继承,因此不能重写Overriding,但可以被重载Overloading.
+

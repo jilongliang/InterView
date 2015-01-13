@@ -1,0 +1,74 @@
+11、EJB是基于哪些技术实现的？并说出SessionBean和EntityBean的区别,StatefulBean和StatelessBean的区别.
+
+    EJB包括Session Bean、Entity Bean、Message Driven Bean,基于JNDI、RMI、JAT等技术实现.
+    SessionBean在J2EE应用程序中被用来完成一些服务器端的业务操作,例如访问数据库、调用其他EJB组件.
+    EntityBean被用来代表应用系统中用到的数据.
+　　对于客户机,SessionBean是一种非持久性对象,它实现某些在服务器上运行的业务逻辑.
+　　对于客户机,EntityBean是一种持久性对象,它代表一个存储在持久性存储器中的实体的对象视图,或是一个由现有企业应用程序实现的实体.
+　　Session Bean 还可以再细分为 Stateful Session Bean 与 Stateless Session Bean ,这两种的 Session Bean都可以将系统逻辑放在 method之中执行
+        ,不同的是 Stateful Session Bean 可以记录呼叫者的状态,因此通常来说,一个使用者会有一个相对应的 Stateful Session Bean 的实体.Stateless
+   Session Bean 虽然也是逻辑组件,但是他却不负责记录使用者状态,也就是说当使用者呼叫 Stateless Session Bean 的时候,EJB Container 并不会找寻
+       特定的 Stateless Session Bean 的实体来执行这个 method.换言之,很可能数个使用者在执行某个 Stateless Session Bean 的 methods 时,会是同一个 Bean 
+       的 Instance 在执行.从内存方面来看, Stateful Session Bean 与 Stateless Session Bean 比较, Stateful Session Bean 会消耗 J2EE Server 较多的内存,
+        然而 Stateful Session Bean 的优势却在于他可以维持使用者的状态.
+
+
+12、Collection 和 Collections的区别.
+　　Collection是集合类的上级接口,继承与他的接口主要有Set 和List.
+Collections是针对集合类的一个帮助类,他提供一系列静态方法实现对各种集合的搜索、排序、线程安全化等操作.
+
+
+13、&和&&的区别.
+&是位运算符,表示按位与运算,&&是逻辑运算符,表示逻辑与（and）.
+
+
+14、HashMap和Hashtable的区别.
+HashMap是Hashtable的轻量级实现（非线程安全的实现）,他们都完成了Map接口,主要区别在于HashMap允许空（null）键值（key）,由于非线程安全,效率上可能高于Hashtable.
+HashMap允许将null作为一个entry的key或者value,而Hashtable不允许.
+HashMap把Hashtable的contains方法去掉了,改成containsvalue和containsKey.因为contains方法容易让人引起误解.
+Hashtable继承自Dictionary类,而HashMap是Java1.2引进的Map interface的一个实现.
+最大的不同是,Hashtable的方法是Synchronize的,而HashMap不是,在多个线程访问Hashtable时,不需要自己为它的方法实现同步,而HashMap 就必须为之提供外同步.
+Hashtable和HashMap采用的hash/rehash算法都大概一样,所以性能不会有很大的差异.
+
+
+15、final, finally, finalize的区别.
+
+　　final 用于声明属性,方法和类,分别表示属性不可变,方法不可覆盖,类不可继承.
+finally是异常处理语句结构的一部分,表示总是执行.
+finalize是Object类的一个方法,在垃圾收集器执行的时候会调用被回收对象的此方法,可以覆盖此方法提供垃圾收集时的其他资源回收,例如关闭文件等.
+
+
+16、sleep() 和 wait() 有什么区别?
+
+sleep是线程类（Thread）的方法,导致此线程暂停执行指定时间,给执行机会给其他线程,但是监控状态依然保持,到时后会自动恢复.调用sleep不会释放对象锁.
+wait是Object类的方法,对此对象调用wait方法导致本线程放弃对象锁,进入等待此对象的等待锁定池,只有针对此对象发出notify方法（或notifyAll）后本线程
+才进入对象锁定池准备获得对象锁进入运行状态.
+
+
+17、Overload和Override的区别.Overloaded的方法是否可以改变返回值的类型?
+
+　　方法的重写Overriding和重载Overloading是Java多态性的不同表现.重写Overriding是父类与子类之间多态性的一种表现,重载Overloading是一个类中多态性
+的一种表现.如果在子类中定义某方法与其父类有相同的名称和参数,我们说该方法被重写 (Overriding).子类的对象使用这个方法时,将调用子类中的定义,对它而言
+,父类中的定义如同被"屏蔽"了.如果在一个类中定义了多个同名的方法,它们或有不同的参数个数或有不同的参数类型,则称为方法的重载(Overloading).Overloaded
+的方法是可以改变返回值的类型.
+
+
+18、error和exception有什么区别?
+　　error 表示恢复不是不可能但很困难的情况下的一种严重问题.比如说内存溢出.不可能指望程序能处理这样的情况.
+exception 表示一种设计或实现问题.也就是说,它表示如果程序运行正常,从不会发生的情况.
+
+
+19、同步和异步有何异同,在什么情况下分别使用他们？举例说明.
+　　如果数据将在线程间共享.例如正在写的数据以后可能被另一个线程读到,或者正在读的数据可能已经被另一个线程写过了,那么这些数据就是共享数据,必须进行同步存取.
+当应用程序在对象上调用了一个需要花费很长时间来执行的方法,并且不希望让程序等待方法的返回时,就应该使用异步编程,在很多情况下采用异步途径往往更有效率.
+
+
+20、abstract class和interface有什么区别?
+
+　　声明方法的存在而不去实现它的类被叫做抽象类（abstract class）,它用于要创建一个体现某些基本行为的类,并为该类声明方法,但不能在该类中实现该类的情况.
+不能创建abstract 类的实例.然而可以创建一个变量,其类型是一个抽象类,并让它指向具体子类的一个实例.不能有抽象构造函数或抽象静态方法.Abstract 类的子类
+为它们父类中的所有抽象方法提供实现,否则它们也是抽象类为.取而代之,在子类中实现该方法.知道其行为的其它类可以在类中实现这些方法.
+　　接口（interface）是抽象类的变体.在接口中,所有方法都是抽象的.多继承性可通过实现这样的接口而获得.接口中的所有方法都是抽象的,没有一个有程序体.接
+口只可以定义static final成员变量.接口的实现与子类相似,除了该实现类不能从接口定义中继承行为.当类实现特殊接口时,它定义（即将程序体给予）所有这种接口的
+方法.然后,它可以在实现了该接口的类的任何对象上调用接口的方法.由于有抽象类,它允许使用接口名作为引用变量的类型.通常的动态联编将生效.引用可以转换到接
+口类型或从接口类型转换,instanceof 运算符可以用来决定某对象的类是否实现了接口.

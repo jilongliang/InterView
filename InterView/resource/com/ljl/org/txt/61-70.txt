@@ -1,0 +1,92 @@
+61、servlet的生命周期
+　　web容器加载servlet,生命周期开始.通过调用servlet的init()方法进行servlet的初始化.
+通过调用service()方法实现,根据请求的不同调用不同的do***()方法.结束服务,web容器调用
+servlet的destroy()方法.
+
+
+62、如何现实servlet的单线程模式
+<%@ page isThreadSafe="false"%>
+
+
+63、页面间对象传递的方法
+request,session,application,cookie等
+
+
+64、JSP和Servlet有哪些相同点和不同点,他们之间的联系是什么？
+　　JSP是Servlet技术的扩展,本质上是Servlet的简易方式,更强调应用的外表表达.JSP编译后是"类servlet".
+Servlet和JSP最主要的不同点在于,Servlet的应用逻辑是在Java文件中,并且完全从表示层中的HTML里分离开来.
+而JSP的情况是Java和HTML可以组合成一个扩展名为.jsp的文件.JSP侧重于视图,Servlet主要用于控制逻辑.
+
+
+65、四种会话跟踪技术
+会话作用域ServletsJSP 页面描述
+page是代表与一个页面相关的对象和属性.一个页面由一个编译好的 Java servlet 类（可以带有任何的 include 指令,
+但是没有 include 动作）表示.这既包括 servlet 又包括被编译成 servlet 的 JSP 页面
+
+	request是是代表与 Web 客户机发出的一个请求相关的对象和属性.一个请求可能跨越多个页面,涉及多个 Web 组件（由于 forward 指令和 include 动作的关系）
+	session是是代表与用于某个 Web 客户机的一个用户体验相关的对象和属性.一个 Web 会话可以也经常会跨越多个客户机请求
+	application是是代表与整个 Web 应用程序相关的对象和属性.这实质上是跨越整个 Web 应用程序,包括多个页面、请求和会话的一个全局作用域
+	66、Request对象的主要方法：
+	setAttribute(String name,Object)：设置名字为name的request的参数值
+	getAttribute(String name)：返回由name指定的属性值
+	getAttributeNames()：返回request对象所有属性的名字集合,结果是一个枚举的实例
+	getCookies()：返回客户端的所有Cookie对象,结果是一个Cookie数组
+	getCharacterEncoding()：返回请求中的字符编码方式
+	getContentLength()：返回请求的Body的长度
+	getHeader(String name)：获得HTTP协议定义的文件头信息
+	getHeaders(String name)：返回指定名字的request Header的所有值,结果是一个枚举的实例
+	getHeaderNames()：返回所以request Header的名字,结果是一个枚举的实例
+	getInputStream()：返回请求的输入流,用于获得请求中的数据
+	getMethod()：获得客户端向服务器端传送数据的方法
+	getParameter(String name)：获得客户端传送给服务器端的有name指定的参数值
+	getParameterNames()：获得客户端传送给服务器端的所有参数的名字,结果是一个枚举的实例
+	getParameterValues(String name)：获得有name指定的参数的所有值
+	getProtocol()：获取客户端向服务器端传送数据所依据的协议名称
+	getQueryString()：获得查询字符串
+	getRequestURI()：获取发出请求字符串的客户端地址
+	getRemoteAddr()：获取客户端的IP地址
+	getRemoteHost()：获取客户端的名字
+	getSession([Boolean create])：返回和请求相关Session
+	getServerName()：获取服务器的名字
+	getServletPath()：获取客户端所请求的脚本文件的路径
+	getServerPort()：获取服务器的端口号
+	removeAttribute(String name)：删除请求中的一个属性
+	
+	
+	
+67、J2EE是技术还是平台还是框架？
+	J2EE本身是一个标准,一个为企业分布式应用的开发提供的标准平台.
+	J2EE也是一个框架,包括JDBC、JNDI、RMI、JMS、EJB、JTA等技术.
+
+
+68、我们在web应用开发过程中经常遇到输出某种编码的字符,如iso8859-1等,如何输出一个某种编码的字符串？
+	Public String translate (String str) {
+	String tempStr = "";
+	try {
+	tempStr = new String(str.getBytes("ISO-8859-1"), "GBK");
+	tempStr = tempStr.trim();
+	}
+	catch (Exception e) {
+	System.err.println(e.getMessage());
+	}
+	return tempStr;
+	}
+	
+	
+69、简述逻辑操作(&,|,^)与条件操作(&&,||)的区别.
+　　区别主要答两点：
+	a.条件操作只能操作布尔型的,而逻辑操作不仅可以操作布尔型,而且可以操作数值型
+	b.逻辑操作不会产生短路
+	
+	
+70、XML文档定义有几种形式？它们之间有何本质区别？解析XML文档有哪几种方式？
+	a: 两种形式 dtd schema,b: 本质区别:schema本身是xml的,可以被XML解析器解析(这也是从DTD上发展schema的根本目的),
+	c:有DOM,SAX,STAX等
+	
+	DOM:处理大型文件时其性能下降的非常厉害.这个问题是由DOM的树结构所造成的,这种结构占用的内存较多,而且DOM必须在解析
+		文件之前把整个文档装入内存,适合对XML的随机访问
+	SAX:不现于DOM,SAX是事件驱动型的XML解析方式.它顺序读取XML文件,不需要一次全部装载整个文件.当遇到像文件开头,文档结束
+		,或者标签开头与标签结束时,它会触发一个事件,用户通过在其回调事件中写入处理代码来处理XML文件,适合对XML的顺序访问
+	STAX:Streaming API for XML (StAX)
+
+
